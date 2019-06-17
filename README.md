@@ -40,6 +40,7 @@ Possible cells from which the soldier can hit the target are
 Considering the starting position of the soldier, the distances it has to travel are
 
 {
+
 	(1, 1): 5, 
 
 	(1, 3): 3, 
@@ -58,6 +59,7 @@ Considering the starting position of the soldier, the distances it has to travel
 On sorting by distance:
 
 [
+
 	((2, 3), 2), 
 
 	((3, 4), 2), 
