@@ -11,10 +11,10 @@ import operator
 
 
 example input
-2 2
-2 1
-2 2
-1#1,1#2
+5 4
+4 3
+1 2
+3#1,2#2
 
 '''
 
@@ -114,7 +114,7 @@ def get_vision(direction,sourcex,sourcey,nrows,ncols,bullet_proof_position,targe
             else:
                 break                
 
-
+    # print(vision)
 
     if (targetx,targety) in vision:
         print("target ",targetx,targety,"in vision")
