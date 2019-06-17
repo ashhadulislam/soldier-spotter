@@ -13,3 +13,7 @@ For example, take a look at the grid below
 
 
 
+
+https://github.com/ashhadulislam/soldier-spotter/blob/master/img.jpg
+
+![sample grid](https://raw.githubusercontent.com/ashhadulislam/soldier-spotter/master/img.jpg)
