@@ -97,7 +97,7 @@ run test.py with the following input(same as the one mentioned above)
 5 4\
 4 3\
 1 2\
-3#1,2#2\
+3#1,2#2
 
 1st line is the dimension of grid (rowXcolumn)
 
