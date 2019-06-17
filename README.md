@@ -41,6 +41,7 @@ Considering the starting position of the soldier, the distances it has to travel
 
 {
 
+
 	(1, 1): 5, 
 
 	(1, 3): 3, 
@@ -54,11 +55,13 @@ Considering the starting position of the soldier, the distances it has to travel
 	(2, 3): 2, 
 	
 	(3, 4): 2
+
 }
 
 On sorting by distance:
 
 [
+
 
 	((2, 3), 2), 
 
@@ -73,6 +76,7 @@ On sorting by distance:
 	((2, 1), 4), 
 
 	((1, 1), 5)
+
 ]
 
 
