@@ -91,14 +91,18 @@ b. lexicographically, row wise
 
 To run the same example, 
 
-run test.py with the following input
+run test.py with the following input(same as the one mentioned above)
 
 
 5 4
-
 4 3
-
 1 2
-
 3#1,2#2
 
+1st line is the dimension of grid (rowXcolumn)
+
+second line is the source position of the soldier
+
+next is the target position
+
+next are the bulletproof cells
