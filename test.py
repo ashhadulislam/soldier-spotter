@@ -39,11 +39,18 @@ def get_all_input():
         two_points=list(map(int,point.split('#')))
         tup=two_points[0],two_points[1]
         bullet_proof_position.append(tup)
-    print(bullet_proof_position)
+    # print(bullet_proof_position)
 
     return m,n,startx,starty,targetx,targety,bullet_proof_position
 
 def get_vision(direction,sourcex,sourcey,nrows,ncols,bullet_proof_position,targetx,targety):
+    '''
+    get the vision of the rifle
+    given any specific direction
+    if the target fallls within the vision
+    return the tuples contained within the vision
+    else return 0
+    '''
     vision=[]
     x=sourcex
     y=sourcey
@@ -117,10 +124,10 @@ def get_vision(direction,sourcex,sourcey,nrows,ncols,bullet_proof_position,targe
     # print(vision)
 
     if (targetx,targety) in vision:
-        print("target ",targetx,targety,"in vision")
-        print("Standing at ",sourcex,sourcey)
-        print("direction is ",direction)
-        print(vision)
+        # print("target ",targetx,targety,"in vision")
+        # print("Standing at ",sourcex,sourcey)
+        # print("direction is ",direction)
+        # print(vision)
         return vision
     else:
         return None
@@ -130,6 +137,10 @@ def get_vision(direction,sourcex,sourcey,nrows,ncols,bullet_proof_position,targe
 
 
 def get_scope_of_rifle(sourcex,sourcey,nrows,ncols,bullet_proof_position,targetx,targety):
+    '''
+    get the range of rifle in all
+    tje eight directions
+    '''
     vision1=get_vision("up_left",sourcex,sourcey,nrows,ncols,bullet_proof_position,targetx,targety)
     vision2=get_vision("up",sourcex,sourcey,nrows,ncols,bullet_proof_position,targetx,targety)
     vision3=get_vision("up_right",sourcex,sourcey,nrows,ncols,bullet_proof_position,targetx,targety)
@@ -143,6 +154,10 @@ def get_scope_of_rifle(sourcex,sourcey,nrows,ncols,bullet_proof_position,targetx
 
 
 def start_travelling(startx,starty,m,n,bullet_proof_position,targetx,targety,matrix_traversal):
+    '''
+    this function travels the grid for all positions and
+    finds out the cells from where the target can be hit
+    '''
 
     this_dict={}
 
@@ -154,6 +169,8 @@ def start_travelling(startx,starty,m,n,bullet_proof_position,targetx,targety,mat
                 # print("Len of visions ",(all_visions))
                 
                 if not all(v is None for v in all_visions):
+                # if all the items in this list are NOT empty
+                # implying that one of the visions hit the target
                     this_dict[(i,j)]=abs(i-startx)+abs(j-starty)
                 matrix_traversal[i][j]=1
 
@@ -176,26 +193,39 @@ def start_travelling(startx,starty,m,n,bullet_proof_position,targetx,targety,mat
 
 
 def main():
+
+    '''
+    the mian code that generates the
+    weighted dictionary containing
+    possible positions of shot
+    along with distance from original position 
+    sorted by distance and by the order of cells
+
+    '''
     m,n,startx,starty,targetx,targety,bullet_proof_position=get_all_input()
+
+    #m,n row and column of grid
+    # startx, starty - source position of soldier
+    # targetx, targety - co ordinate of target
+    # bullet_proof_position - list of positions in the grid that are bullet proof
+
     print("Input taken successfully")
 
-    # m,n=5,4
-    # startx,starty=4,3
-    # targetx,targety=1,2
-    # bullet_proof_position=[
-    # (2,2),(3,1)
-    # ]
-
+    
     matrix_traversal=[[0] * (n+1) for i in range(m+1)]
+    #we will record/remember a walk of the vertices in this matric
+    # so that we dont traverse the same vertex twice
 
-    for line in matrix_traversal:
-        print(line)
-
+    #make sure that the target cell is NOT traversed
+    matrix_traversal[targetx+1][targety+1]=1
 
     travel_diaries=start_travelling(startx,starty,m,n,bullet_proof_position,targetx,targety,matrix_traversal)
+    #start the traversal
+
+    print("Unsorted dictionary is:")
     print(travel_diaries)
 
-
+    print("Re arranged the dict based on the distance from the source position:")
     sorted_travel_diaries = sorted(travel_diaries.items(), key=operator.itemgetter(1))
 
     print(sorted_travel_diaries)
